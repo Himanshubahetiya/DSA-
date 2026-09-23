@@ -1,0 +1,1247 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}</style><style>:root{color-scheme:light dark;--md-bg:#fff;--md-text:rgba(0,0,0,.8);--md-muted:rgba(0,0,0,.6);--md-fill:rgba(0,0,0,.04);--md-fill-strong:rgba(0,0,0,.06);--md-rule:rgba(0,0,0,.1);--md-rule-strong:rgba(0,0,0,.16);--md-link:hsl(210 100% 45%)}@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])){--md-bg:#0d0d0d;--md-text:rgba(255,255,255,.85);--md-muted:rgba(255,255,255,.6);--md-fill:rgba(255,255,255,.06);--md-fill-strong:rgba(255,255,255,.09);--md-rule:rgba(255,255,255,.14);--md-rule-strong:rgba(255,255,255,.22);--md-link:hsl(210 100% 72%)}}:root[data-theme="dark"]{color-scheme:dark;--md-bg:#0d0d0d;--md-text:rgba(255,255,255,.85);--md-muted:rgba(255,255,255,.6);--md-fill:rgba(255,255,255,.06);--md-fill-strong:rgba(255,255,255,.09);--md-rule:rgba(255,255,255,.14);--md-rule-strong:rgba(255,255,255,.22);--md-link:hsl(210 100% 72%)}:root[data-theme="light"]{color-scheme:light}@media print{:root,:root[data-theme="dark"]{color-scheme:light;--md-bg:#fff;--md-text:rgba(0,0,0,.8);--md-muted:rgba(0,0,0,.6);--md-fill:rgba(0,0,0,.04);--md-fill-strong:rgba(0,0,0,.06);--md-rule:rgba(0,0,0,.1);--md-rule-strong:rgba(0,0,0,.16);--md-link:hsl(210 100% 45%)}}body{background:var(--md-bg);color:var(--md-text);max-width:720px;margin:0 auto;padding:32px;display:flex;flex-direction:column;gap:10px;font:14px/1.55 -apple-system,BlinkMacSystemFont,'SF Pro','Segoe UI',sans-serif;overflow-wrap:break-word}body>:first-child{margin-top:0}h1,h2,h3,h4,h5,h6{margin:6px 0 0;line-height:1.25;font-weight:600;text-wrap:balance}h1{font-size:1.35em}h2{font-size:1.15em;color:var(--md-muted)}h3,h4,h5,h6{font-size:1em}p,ul,ol,blockquote,table,pre,hr{margin:0}strong{font-weight:600}a{color:var(--md-link);text-decoration:none}a:hover{text-decoration:underline}ul,ol{display:flex;flex-direction:column;gap:6px;padding-left:22px}ul{list-style:disc}ol{list-style:decimal}:is(li,td,th)>*+:is(p,ul,ol,blockquote){margin-top:6px}blockquote{display:flex;flex-direction:column;gap:10px;border-left:2px solid var(--md-rule);padding-left:10px;color:var(--md-muted)}:not(pre)>code{background:var(--md-fill);padding:1px 3px;border-radius:4px;font:.92em 'SF Mono',ui-monospace,Menlo,Consolas,monospace}a>code{background:none;color:inherit}pre{background:var(--md-fill);padding:10px 12px;border-radius:6px;overflow-x:auto;font:12px/1.5 'SF Mono',ui-monospace,Menlo,Consolas,monospace;margin-block:4px}pre code{background:none;padding:0;font:inherit}table{width:100%;border-collapse:separate;border-spacing:2px;font:inherit}th,td{padding:6px 8px;border-radius:3px;text-align:left;vertical-align:top}th{background:var(--md-fill-strong);font-weight:600}td{background:var(--md-fill)}:is(th,td) :not(pre)>code{background:transparent}hr{border:0;border-top:1px solid var(--md-rule-strong);margin-block:10px}img{max-width:100%;height:auto;border-radius:4px}</style>
+</head><body>
+<h1>DSA Interview Prep: Python Developer (1 YOE), Indian IT Service Companies</h1>
+<p><strong>Covers:</strong> TCS, Infosys, Wipro, Accenture, Cognizant, Capgemini, HCL, Tech Mahindra, LTIMindtree, Mphasis, Deloitte, Persistent and similar.
+<strong>Total:</strong> 52 questions (32 Easy, 20 Medium), no Hard.</p>
+<blockquote>
+<p><strong>Honest note on &quot;frequency&quot;:</strong> No company publishes its question bank. The tiers below come from patterns that repeatedly show up in candidate reports, OA write-ups and prep platforms. Treat them as strong guidance, not guarantees. Service-company rounds usually test <em>pattern recognition, clean code and edge cases</em> more than clever tricks.</p>
+</blockquote>
+<p><strong>Linked-list problems use this node class:</strong></p>
+<pre><code class="language-python">class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+</code></pre>
+<p><strong>Python tools worth knowing:</strong> <code>collections.Counter</code>, <code>defaultdict</code>, <code>deque</code>, <code>heapq</code>, <code>sorted(key=...)</code>, slicing, <code>enumerate</code>, <code>zip</code>, <code>set</code>, <code>math.gcd</code>.</p>
+<hr>
+<h1>TIER 1: MUST DO (Q1–Q20)</h1>
+<h3>Q1. Reverse a String</h3>
+<p><strong>Easy · Strings · Time O(n) · Space O(n)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Return the reverse of a given string.</li>
+<li><strong>Why asked:</strong> Warm-up question; tests loops, indexing and whether you know Python slicing.</li>
+<li><strong>Example:</strong> <code>&quot;hello&quot;</code> → <code>&quot;olleh&quot;</code></li>
+</ul>
+<pre><code class="language-python">def reverse_string(s):
+    chars = list(s)
+    l, r = 0, len(chars) - 1
+    while l &lt; r:
+        chars[l], chars[r] = chars[r], chars[l]
+        l += 1
+        r -= 1
+    return &#34;&#34;.join(chars)
+# Pythonic: s[::-1]
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Swap characters from both ends moving inward (strings are immutable, so convert to a list).</li>
+<li><strong>Follow-ups:</strong> Reverse without extra space (in a list, in-place)? Reverse words in a sentence? Why is <code>s[::-1]</code> O(n)?</li>
+</ul>
+<h3>Q2. Check Palindrome (ignore case and non-alphanumerics)</h3>
+<p><strong>Easy · Strings · Time O(n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Return True if the string reads the same forwards and backwards, ignoring case, spaces and punctuation.</li>
+<li><strong>Why asked:</strong> Very common in TCS/Infosys/Wipro tests; introduces two pointers.</li>
+<li><strong>Example:</strong> <code>&quot;A man, a plan, a canal: Panama&quot;</code> → <code>True</code></li>
+</ul>
+<pre><code class="language-python">def is_palindrome(s):
+    l, r = 0, len(s) - 1
+    while l &lt; r:
+        while l &lt; r and not s[l].isalnum():
+            l += 1
+        while l &lt; r and not s[r].isalnum():
+            r -= 1
+        if s[l].lower() != s[r].lower():
+            return False
+        l += 1
+        r -= 1
+    return True
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Two pointers skip junk characters and compare the rest case-insensitively.</li>
+<li><strong>Follow-ups:</strong> Palindrome number without converting to string? Longest palindromic substring (Q41)? Palindrome linked list?</li>
+</ul>
+<h3>Q3. Two Sum</h3>
+<p><strong>Easy · Hashing · Time O(n) · Space O(n)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Return indices of the two numbers that add up to <code>target</code>.</li>
+<li><strong>Why asked:</strong> The most frequently cited array question; tests brute force to hash map optimisation.</li>
+<li><strong>Example:</strong> <code>nums=[2,7,11,15], target=9</code> → <code>[0,1]</code></li>
+</ul>
+<pre><code class="language-python">def two_sum(nums, target):
+    seen = {}                      # value -&gt; index
+    for i, x in enumerate(nums):
+        if target - x in seen:
+            return [seen[target - x], i]
+        seen[x] = i
+    return []
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> For each number, check if its complement was already seen; otherwise store it.</li>
+<li><strong>Follow-ups:</strong> What if the array is sorted (two pointers, O(1) space)? Return all pairs? What if duplicates exist?</li>
+</ul>
+<h3>Q4. Second Largest Element in an Array</h3>
+<p><strong>Easy · Arrays · Time O(n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Find the second largest distinct element without sorting.</li>
+<li><strong>Why asked:</strong> Tests single-pass logic and edge cases (duplicates, size &lt; 2).</li>
+<li><strong>Example:</strong> <code>[12, 35, 1, 10, 34, 1]</code> → <code>34</code></li>
+</ul>
+<pre><code class="language-python">def second_largest(nums):
+    first = second = float(&#34;-inf&#34;)
+    for x in nums:
+        if x &gt; first:
+            second, first = first, x
+        elif first &gt; x &gt; second:
+            second = x
+    return second if second != float(&#34;-inf&#34;) else None
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Track top two distinct values in one pass.</li>
+<li><strong>Follow-ups:</strong> k-th largest (heap / sorting)? All elements equal? Do it with sorting and compare complexity.</li>
+</ul>
+<h3>Q5. Move Zeroes to End</h3>
+<p><strong>Easy · Two Pointers · Time O(n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Move all zeros to the end in-place, keeping the order of non-zero elements.</li>
+<li><strong>Why asked:</strong> Classic in-place array manipulation.</li>
+<li><strong>Example:</strong> <code>[0,1,0,3,12]</code> → <code>[1,3,12,0,0]</code></li>
+</ul>
+<pre><code class="language-python">def move_zeroes(nums):
+    j = 0                          # next position for a non-zero
+    for i in range(len(nums)):
+        if nums[i] != 0:
+            nums[i], nums[j] = nums[j], nums[i]
+            j += 1
+    return nums
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> <code>j</code> marks the boundary of the non-zero prefix; swap non-zeros into it.</li>
+<li><strong>Follow-ups:</strong> Minimise the number of writes? Move all of a given value to the end?</li>
+</ul>
+<h3>Q6. Remove Duplicates from Sorted Array</h3>
+<p><strong>Easy · Two Pointers · Time O(n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Remove duplicates in-place from a sorted array and return the count of unique elements.</li>
+<li><strong>Why asked:</strong> Tests in-place modification and the slow/fast pointer idea.</li>
+<li><strong>Example:</strong> <code>[1,1,2,2,3]</code> → <code>3</code> (array becomes <code>[1,2,3,...]</code>)</li>
+</ul>
+<pre><code class="language-python">def remove_duplicates(nums):
+    if not nums:
+        return 0
+    k = 1
+    for i in range(1, len(nums)):
+        if nums[i] != nums[k - 1]:
+            nums[k] = nums[i]
+            k += 1
+    return k
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> <code>k</code> is the write position; copy an element only if it differs from the last kept one.</li>
+<li><strong>Follow-ups:</strong> Allow at most 2 duplicates? Unsorted array (use a set)? Preserve order with <code>dict.fromkeys</code>?</li>
+</ul>
+<h3>Q7. Valid Anagram</h3>
+<p><strong>Easy · Hashing · Time O(n) · Space O(1) (fixed alphabet) / O(n)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Check if two strings are anagrams.</li>
+<li><strong>Why asked:</strong> Standard hashing/frequency-count question.</li>
+<li><strong>Example:</strong> <code>&quot;listen&quot;, &quot;silent&quot;</code> → <code>True</code></li>
+</ul>
+<pre><code class="language-python">from collections import Counter
+
+def is_anagram(a, b):
+    return len(a) == len(b) and Counter(a) == Counter(b)
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Anagrams have identical character frequencies.</li>
+<li><strong>Follow-ups:</strong> Solve with <code>sorted()</code> (O(n log n))? Unicode input? Group anagrams (Q21)?</li>
+</ul>
+<h3>Q8. First Non-Repeating Character</h3>
+<p><strong>Easy · Hashing · Time O(n) · Space O(1)/O(n)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Return the index of the first character that appears only once, or -1.</li>
+<li><strong>Why asked:</strong> Very common frequency-map question.</li>
+<li><strong>Example:</strong> <code>&quot;swiss&quot;</code> → <code>1</code> (the character <code>w</code>)</li>
+</ul>
+<pre><code class="language-python">from collections import Counter
+
+def first_unique_char(s):
+    freq = Counter(s)
+    for i, ch in enumerate(s):
+        if freq[ch] == 1:
+            return i
+    return -1
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Pass 1 builds counts; pass 2 finds the first char with count 1.</li>
+<li><strong>Follow-ups:</strong> Do it in a single pass (streaming)? First repeating character? Most frequent character?</li>
+</ul>
+<h3>Q9. Nth Fibonacci Number</h3>
+<p><strong>Easy · Recursion · Time O(n) · Space O(1) iterative / O(n) memoised</strong></p>
+<ul>
+<li><strong>Problem:</strong> Return the nth Fibonacci number (F0=0, F1=1).</li>
+<li><strong>Why asked:</strong> The go-to recursion question; interviewers want you to notice naive recursion is exponential.</li>
+<li><strong>Example:</strong> <code>n=6</code> → <code>8</code></li>
+</ul>
+<pre><code class="language-python">from functools import lru_cache
+
+def fib(n):                        # iterative
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a
+
+@lru_cache(maxsize=None)
+def fib_rec(n):                    # memoised recursion
+    return n if n &lt; 2 else fib_rec(n - 1) + fib_rec(n - 2)
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Naive recursion recomputes subproblems (O(2^n)); memoisation or iteration makes it linear.</li>
+<li><strong>Follow-ups:</strong> Time complexity of plain recursion? Recursion depth limit in Python? Print first n terms?</li>
+</ul>
+<h3>Q10. Prime Number Check</h3>
+<p><strong>Easy · Math · Time O(√n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Check whether n is prime.</li>
+<li><strong>Why asked:</strong> Extremely common in all service-company OAs.</li>
+<li><strong>Example:</strong> <code>29</code> → <code>True</code>, <code>1</code> → <code>False</code></li>
+</ul>
+<pre><code class="language-python">def is_prime(n):
+    if n &lt; 2:
+        return False
+    i = 2
+    while i * i &lt;= n:
+        if n % i == 0:
+            return False
+        i += 1
+    return True
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> A composite number always has a factor ≤ √n.</li>
+<li><strong>Follow-ups:</strong> Print all primes up to N (Sieve of Eratosthenes)? Count primes in a range? Why start at 2 and handle 0/1?</li>
+</ul>
+<h3>Q11. Binary Search</h3>
+<p><strong>Easy · Searching · Time O(log n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Find the index of <code>target</code> in a sorted array, or -1.</li>
+<li><strong>Why asked:</strong> Fundamental; tests boundary handling and off-by-one care.</li>
+<li><strong>Example:</strong> <code>[1,3,5,7,9], target=7</code> → <code>3</code></li>
+</ul>
+<pre><code class="language-python">def binary_search(nums, target):
+    l, r = 0, len(nums) - 1
+    while l &lt;= r:
+        m = l + (r - l) // 2
+        if nums[m] == target:
+            return m
+        elif nums[m] &lt; target:
+            l = m + 1
+        else:
+            r = m - 1
+    return -1
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Halve the search range each step by comparing with the middle.</li>
+<li><strong>Follow-ups:</strong> Recursive version? First/last occurrence? <code>bisect</code> module? Why <code>l + (r-l)//2</code>?</li>
+</ul>
+<h3>Q12. Valid Parentheses</h3>
+<p><strong>Easy · Stack · Time O(n) · Space O(n)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Given a string of <code>()[]{}</code>, check if brackets are balanced and correctly nested.</li>
+<li><strong>Why asked:</strong> The standard stack question.</li>
+<li><strong>Example:</strong> <code>&quot;()[]{}&quot;</code> → <code>True</code>, <code>&quot;(]&quot;</code> → <code>False</code></li>
+</ul>
+<pre><code class="language-python">def is_valid(s):
+    pairs = {&#34;)&#34;: &#34;(&#34;, &#34;]&#34;: &#34;[&#34;, &#34;}&#34;: &#34;{&#34;}
+    stack = []
+    for ch in s:
+        if ch in pairs:
+            if not stack or stack.pop() != pairs[ch]:
+                return False
+        else:
+            stack.append(ch)
+    return not stack
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Push openers; on a closer, the top of the stack must be its matching opener.</li>
+<li><strong>Follow-ups:</strong> Minimum insertions to balance? Longest valid parentheses? Handle other characters in the string?</li>
+</ul>
+<h3>Q13. Reverse a Linked List</h3>
+<p><strong>Easy · Linked List · Time O(n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Reverse a singly linked list and return the new head.</li>
+<li><strong>Why asked:</strong> The most common linked-list question.</li>
+<li><strong>Example:</strong> <code>1→2→3→None</code> → <code>3→2→1→None</code></li>
+</ul>
+<pre><code class="language-python">def reverse_list(head):
+    prev = None
+    while head:
+        nxt = head.next
+        head.next = prev
+        prev = head
+        head = nxt
+    return prev
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Flip each <code>next</code> pointer to point backwards while walking forward.</li>
+<li><strong>Follow-ups:</strong> Recursive version? Reverse in groups of k? Reverse between positions m and n?</li>
+</ul>
+<h3>Q14. Missing Number (0 to n)</h3>
+<p><strong>Easy · Math / Arrays · Time O(n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> An array holds n distinct numbers from 0..n; find the missing one.</li>
+<li><strong>Why asked:</strong> Tests the sum-formula trick.</li>
+<li><strong>Example:</strong> <code>[3,0,1]</code> → <code>2</code></li>
+</ul>
+<pre><code class="language-python">def missing_number(nums):
+    n = len(nums)
+    return n * (n + 1) // 2 - sum(nums)
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Expected sum minus actual sum equals the missing value.</li>
+<li><strong>Follow-ups:</strong> Solve using XOR? Handle overflow concerns (not an issue in Python, but in Java/C++)? Missing and duplicate together?</li>
+</ul>
+<h3>Q15. Merge Two Sorted Arrays</h3>
+<p><strong>Easy · Two Pointers · Time O(m+n) · Space O(m+n)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Merge two sorted arrays into one sorted array.</li>
+<li><strong>Why asked:</strong> Basis of merge sort; very common.</li>
+<li><strong>Example:</strong> <code>[1,3,5], [2,4,6]</code> → <code>[1,2,3,4,5,6]</code></li>
+</ul>
+<pre><code class="language-python">def merge_sorted(a, b):
+    i = j = 0
+    res = []
+    while i &lt; len(a) and j &lt; len(b):
+        if a[i] &lt;= b[j]:
+            res.append(a[i]); i += 1
+        else:
+            res.append(b[j]); j += 1
+    res.extend(a[i:])
+    res.extend(b[j:])
+    return res
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Repeatedly take the smaller front element; append leftovers.</li>
+<li><strong>Follow-ups:</strong> Merge in-place when the first array has extra space (fill from the back)? Merge k sorted lists (heap)?</li>
+</ul>
+<h3>Q16. Maximum Subarray Sum (Kadane's)</h3>
+<p><strong>Medium · Arrays · Time O(n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Find the contiguous subarray with the largest sum.</li>
+<li><strong>Why asked:</strong> The most popular &quot;medium&quot; array question; tests DP-lite thinking.</li>
+<li><strong>Example:</strong> <code>[-2,1,-3,4,-1,2,1,-5,4]</code> → <code>6</code></li>
+</ul>
+<pre><code class="language-python">def max_subarray(nums):
+    cur = best = nums[0]
+    for x in nums[1:]:
+        cur = max(x, cur + x)
+        best = max(best, cur)
+    return best
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> At each element, either extend the current run or start fresh.</li>
+<li><strong>Follow-ups:</strong> Return the subarray itself (track indices)? All negatives? Max circular subarray?</li>
+</ul>
+<h3>Q17. Rotate Array by K</h3>
+<p><strong>Medium · Arrays · Time O(n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Rotate an array to the right by k steps, in-place.</li>
+<li><strong>Why asked:</strong> Tests in-place logic and modulo handling.</li>
+<li><strong>Example:</strong> <code>[1,2,3,4,5,6,7], k=3</code> → <code>[5,6,7,1,2,3,4]</code></li>
+</ul>
+<pre><code class="language-python">def rotate(nums, k):
+    n = len(nums)
+    if n == 0:
+        return nums
+    k %= n
+    def rev(l, r):
+        while l &lt; r:
+            nums[l], nums[r] = nums[r], nums[l]
+            l += 1
+            r -= 1
+    rev(0, n - 1)
+    rev(0, k - 1)
+    rev(k, n - 1)
+    return nums
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Reverse everything, then reverse the first k and the remaining n-k.</li>
+<li><strong>Follow-ups:</strong> Left rotation? Why <code>k %= n</code>? Slicing solution <code>nums[-k:] + nums[:-k]</code> and its space cost?</li>
+</ul>
+<h3>Q18. Longest Substring Without Repeating Characters</h3>
+<p><strong>Medium · Sliding Window · Time O(n) · Space O(min(n, alphabet))</strong></p>
+<ul>
+<li><strong>Problem:</strong> Find the length of the longest substring with all distinct characters.</li>
+<li><strong>Why asked:</strong> The standard sliding-window question.</li>
+<li><strong>Example:</strong> <code>&quot;abcabcbb&quot;</code> → <code>3</code></li>
+</ul>
+<pre><code class="language-python">def length_of_longest_substring(s):
+    last = {}
+    start = best = 0
+    for i, ch in enumerate(s):
+        if ch in last and last[ch] &gt;= start:
+            start = last[ch] + 1
+        last[ch] = i
+        best = max(best, i - start + 1)
+    return best
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Keep a window <code>[start, i]</code>; when a repeat appears inside it, jump <code>start</code> past the earlier occurrence.</li>
+<li><strong>Follow-ups:</strong> Return the substring itself? At most k distinct characters? Why is this O(n) despite the shrinking window?</li>
+</ul>
+<h3>Q19. Sort 0s, 1s and 2s</h3>
+<p><strong>Medium · Sorting · Time O(n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Sort an array containing only 0, 1, 2 in a single pass without using sort.</li>
+<li><strong>Why asked:</strong> Dutch National Flag is a favourite in service-company interviews.</li>
+<li><strong>Example:</strong> <code>[2,0,2,1,1,0]</code> → <code>[0,0,1,1,2,2]</code></li>
+</ul>
+<pre><code class="language-python">def sort_colors(nums):
+    low, mid, high = 0, 0, len(nums) - 1
+    while mid &lt;= high:
+        if nums[mid] == 0:
+            nums[low], nums[mid] = nums[mid], nums[low]
+            low += 1; mid += 1
+        elif nums[mid] == 1:
+            mid += 1
+        else:
+            nums[mid], nums[high] = nums[high], nums[mid]
+            high -= 1
+    return nums
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Three regions (0s, 1s, unknown, 2s); <code>mid</code> scans the unknown region.</li>
+<li><strong>Follow-ups:</strong> Counting-sort approach (two passes)? Why don't we increment <code>mid</code> after swapping with <code>high</code>?</li>
+</ul>
+<h3>Q20. Contains Duplicate</h3>
+<p><strong>Easy · Hashing · Time O(n) · Space O(n)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Return True if any value appears at least twice.</li>
+<li><strong>Why asked:</strong> Simple hashing check; frequently the first question of an OA.</li>
+<li><strong>Example:</strong> <code>[1,2,3,1]</code> → <code>True</code></li>
+</ul>
+<pre><code class="language-python">def contains_duplicate(nums):
+    seen = set()
+    for x in nums:
+        if x in seen:
+            return True
+        seen.add(x)
+    return False
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> A set gives O(1) membership checks; stop at the first repeat.</li>
+<li><strong>Follow-ups:</strong> <code>len(set(nums)) != len(nums)</code>: trade-offs? Find <em>all</em> duplicates? Duplicates within distance k?</li>
+</ul>
+<hr>
+<h1>TIER 2: IMPORTANT (Q21–Q38)</h1>
+<h3>Q21. Group Anagrams</h3>
+<p><strong>Medium · Hashing · Time O(n·k log k) · Space O(n·k)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Group words that are anagrams of each other.</li>
+<li><strong>Why asked:</strong> Tests choosing a good hash key.</li>
+<li><strong>Example:</strong> <code>[&quot;eat&quot;,&quot;tea&quot;,&quot;tan&quot;,&quot;ate&quot;,&quot;nat&quot;,&quot;bat&quot;]</code> → <code>[[&quot;eat&quot;,&quot;tea&quot;,&quot;ate&quot;],[&quot;tan&quot;,&quot;nat&quot;],[&quot;bat&quot;]]</code></li>
+</ul>
+<pre><code class="language-python">from collections import defaultdict
+
+def group_anagrams(words):
+    groups = defaultdict(list)
+    for w in words:
+        groups[&#34;&#34;.join(sorted(w))].append(w)
+    return list(groups.values())
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Sorted letters form a canonical key shared by all anagrams.</li>
+<li><strong>Follow-ups:</strong> O(n·k) using a 26-count tuple as key? Why can't a list be a dict key?</li>
+</ul>
+<h3>Q22. Best Time to Buy and Sell Stock</h3>
+<p><strong>Easy · Arrays / Greedy · Time O(n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Given daily prices, find the maximum profit from one buy and one later sell.</li>
+<li><strong>Why asked:</strong> Common greedy/array question.</li>
+<li><strong>Example:</strong> <code>[7,1,5,3,6,4]</code> → <code>5</code></li>
+</ul>
+<pre><code class="language-python">def max_profit(prices):
+    min_price = float(&#34;inf&#34;)
+    best = 0
+    for p in prices:
+        min_price = min(min_price, p)
+        best = max(best, p - min_price)
+    return best
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Track the lowest price so far and the best profit if selling today.</li>
+<li><strong>Follow-ups:</strong> Multiple transactions allowed? Prices always decreasing?</li>
+</ul>
+<h3>Q23. Majority Element</h3>
+<p><strong>Easy · Hashing · Time O(n) · Space O(1) (Boyer-Moore)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Find the element that appears more than n/2 times (guaranteed to exist).</li>
+<li><strong>Why asked:</strong> Lets you show hashmap first, then optimise.</li>
+<li><strong>Example:</strong> <code>[2,2,1,1,1,2,2]</code> → <code>2</code></li>
+</ul>
+<pre><code class="language-python">def majority_element(nums):
+    cand, count = None, 0
+    for x in nums:
+        if count == 0:
+            cand = x
+        count += 1 if x == cand else -1
+    return cand
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Boyer-Moore voting: the majority element survives all cancellations.</li>
+<li><strong>Follow-ups:</strong> Hashmap/Counter version? What if a majority may not exist (add a verification pass)? Elements appearing &gt; n/3?</li>
+</ul>
+<h3>Q24. Intersection of Two Arrays</h3>
+<p><strong>Easy · Hashing · Time O(m+n) · Space O(m+n)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Return the unique common elements of two arrays.</li>
+<li><strong>Why asked:</strong> Set operations are a frequent OA warm-up.</li>
+<li><strong>Example:</strong> <code>[1,2,2,1], [2,2]</code> → <code>[2]</code></li>
+</ul>
+<pre><code class="language-python">def intersection(a, b):
+    set_a = set(a)
+    return [x for x in set(b) if x in set_a]
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Convert one to a set for O(1) lookups and scan the other.</li>
+<li><strong>Follow-ups:</strong> Keep duplicates (Counter)? Both arrays sorted (two pointers)? Union and difference?</li>
+</ul>
+<h3>Q25. Merge Intervals</h3>
+<p><strong>Medium · Sorting · Time O(n log n) · Space O(n)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Merge all overlapping intervals.</li>
+<li><strong>Why asked:</strong> The standard &quot;sort then sweep&quot; question.</li>
+<li><strong>Example:</strong> <code>[[1,3],[2,6],[8,10],[15,18]]</code> → <code>[[1,6],[8,10],[15,18]]</code></li>
+</ul>
+<pre><code class="language-python">def merge_intervals(intervals):
+    if not intervals:
+        return []
+    intervals.sort(key=lambda x: x[0])
+    res = [intervals[0]]
+    for s, e in intervals[1:]:
+        if s &lt;= res[-1][1]:
+            res[-1][1] = max(res[-1][1], e)
+        else:
+            res.append([s, e])
+    return res
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> After sorting by start, an interval overlaps only with the last merged one.</li>
+<li><strong>Follow-ups:</strong> Insert a new interval? Minimum meeting rooms? Do touching intervals like [1,2],[2,3] merge?</li>
+</ul>
+<h3>Q26. Implement Bubble Sort</h3>
+<p><strong>Easy · Sorting · Time O(n²) (O(n) best) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Sort an array using bubble sort.</li>
+<li><strong>Why asked:</strong> Interviewers often ask you to code a basic sort by hand.</li>
+<li><strong>Example:</strong> <code>[5,1,4,2,8]</code> → <code>[1,2,4,5,8]</code></li>
+</ul>
+<pre><code class="language-python">def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n - 1):
+        swapped = False
+        for j in range(n - 1 - i):
+            if arr[j] &gt; arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+        if not swapped:
+            break
+    return arr
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Largest elements &quot;bubble&quot; to the end each pass; stop early if no swaps.</li>
+<li><strong>Follow-ups:</strong> Selection/insertion sort? Is it stable? What does Python's <code>sort()</code> use (Timsort)? Merge sort vs quick sort?</li>
+</ul>
+<h3>Q27. Min Stack</h3>
+<p><strong>Medium · Stack · Time O(1) per op · Space O(n)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Design a stack supporting push, pop, top and get_min in O(1).</li>
+<li><strong>Why asked:</strong> Tests data-structure design.</li>
+<li><strong>Example:</strong> push(3), push(1), push(2) → get_min() = <code>1</code>; pop(); pop(); get_min() = <code>3</code></li>
+</ul>
+<pre><code class="language-python">class MinStack:
+    def __init__(self):
+        self.st = []
+        self.mins = []
+
+    def push(self, x):
+        self.st.append(x)
+        self.mins.append(min(x, self.mins[-1]) if self.mins else x)
+
+    def pop(self):
+        self.mins.pop()
+        return self.st.pop()
+
+    def top(self):
+        return self.st[-1]
+
+    def get_min(self):
+        return self.mins[-1]
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> A parallel stack stores the running minimum at each depth.</li>
+<li><strong>Follow-ups:</strong> Single-stack trick (store differences)? Max stack? Implement a stack using a queue?</li>
+</ul>
+<h3>Q28. Queue Using Two Stacks</h3>
+<p><strong>Easy · Queue · Time O(1) amortised · Space O(n)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Implement FIFO queue operations using only stacks.</li>
+<li><strong>Why asked:</strong> Classic queue/stack conversion; also expect &quot;how do you use a queue in Python?&quot;</li>
+<li><strong>Example:</strong> push(1), push(2), pop() → <code>1</code>, peek() → <code>2</code></li>
+</ul>
+<pre><code class="language-python">class MyQueue:
+    def __init__(self):
+        self.inp, self.out = [], []
+
+    def push(self, x):
+        self.inp.append(x)
+
+    def _shift(self):
+        if not self.out:
+            while self.inp:
+                self.out.append(self.inp.pop())
+
+    def pop(self):
+        self._shift()
+        return self.out.pop()
+
+    def peek(self):
+        self._shift()
+        return self.out[-1]
+
+    def empty(self):
+        return not self.inp and not self.out
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Reversing the input stack into the output stack restores FIFO order; refill only when the output is empty.</li>
+<li><strong>Follow-ups:</strong> Why <code>deque</code> instead of <code>list.pop(0)</code> (O(n))? Circular queue? Stack using queues?</li>
+</ul>
+<h3>Q29. Middle of a Linked List</h3>
+<p><strong>Easy · Linked List · Time O(n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Return the middle node (the second middle if the length is even).</li>
+<li><strong>Why asked:</strong> Introduces slow/fast pointers.</li>
+<li><strong>Example:</strong> <code>1→2→3→4→5</code> → node <code>3</code></li>
+</ul>
+<pre><code class="language-python">def middle_node(head):
+    slow = fast = head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+    return slow
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Fast moves twice as quickly, so slow is at the middle when fast reaches the end.</li>
+<li><strong>Follow-ups:</strong> Return the first middle for even lengths? Palindrome linked list (find middle, reverse second half)?</li>
+</ul>
+<h3>Q30. Detect Cycle in a Linked List</h3>
+<p><strong>Easy · Linked List · Time O(n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Determine whether a linked list has a cycle.</li>
+<li><strong>Why asked:</strong> Floyd's algorithm is a favourite.</li>
+<li><strong>Example:</strong> <code>3→2→0→-4→(back to 2)</code> → <code>True</code></li>
+</ul>
+<pre><code class="language-python">def has_cycle(head):
+    slow = fast = head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow is fast:
+            return True
+    return False
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> If a cycle exists, the fast pointer eventually laps the slow one.</li>
+<li><strong>Follow-ups:</strong> Find the cycle's starting node? HashSet approach (O(n) space)? Length of the cycle?</li>
+</ul>
+<h3>Q31. Merge Two Sorted Linked Lists</h3>
+<p><strong>Easy · Linked List · Time O(m+n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Merge two sorted linked lists into one sorted list.</li>
+<li><strong>Why asked:</strong> Combines linked-list pointer handling with the merge idea.</li>
+<li><strong>Example:</strong> <code>1→3→5</code> and <code>2→4</code> → <code>1→2→3→4→5</code></li>
+</ul>
+<pre><code class="language-python">def merge_two_lists(l1, l2):
+    dummy = tail = ListNode()
+    while l1 and l2:
+        if l1.val &lt;= l2.val:
+            tail.next, l1 = l1, l1.next
+        else:
+            tail.next, l2 = l2, l2.next
+        tail = tail.next
+    tail.next = l1 or l2
+    return dummy.next
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> A dummy head avoids special-casing the first node.</li>
+<li><strong>Follow-ups:</strong> Recursive version? Merge k lists? Sort a linked list (merge sort)?</li>
+</ul>
+<h3>Q32. Armstrong Number</h3>
+<p><strong>Easy · Math · Time O(d) · Space O(d)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Check if a number equals the sum of its digits each raised to the power of the digit count.</li>
+<li><strong>Why asked:</strong> Perennial in TCS/Wipro/Infosys number-problem sets.</li>
+<li><strong>Example:</strong> <code>153</code> → <code>True</code> (1³+5³+3³)</li>
+</ul>
+<pre><code class="language-python">def is_armstrong(n):
+    digits = str(n)
+    p = len(digits)
+    return sum(int(d) ** p for d in digits) == n
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Convert to digits, raise each to the digit count, and compare with n.</li>
+<li><strong>Follow-ups:</strong> Solve without strings (use <code>% 10</code> and <code>// 10</code>)? Print all Armstrong numbers in a range? Perfect number / strong number?</li>
+</ul>
+<h3>Q33. GCD and LCM</h3>
+<p><strong>Easy · Math · Time O(log min(a,b)) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Compute the GCD and LCM of two numbers.</li>
+<li><strong>Why asked:</strong> Tests Euclid's algorithm.</li>
+<li><strong>Example:</strong> <code>12, 18</code> → GCD <code>6</code>, LCM <code>36</code></li>
+</ul>
+<pre><code class="language-python">def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def lcm(a, b):
+    return a // gcd(a, b) * b
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> GCD(a, b) = GCD(b, a mod b); LCM = a·b / GCD.</li>
+<li><strong>Follow-ups:</strong> GCD of an array? Recursive version? <code>math.gcd</code> and <code>math.lcm</code>?</li>
+</ul>
+<h3>Q34. Rotate Matrix by 90° (Clockwise)</h3>
+<p><strong>Medium · Matrix · Time O(n²) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Rotate an n×n matrix 90° clockwise in-place.</li>
+<li><strong>Why asked:</strong> The standard 2D array manipulation question.</li>
+<li><strong>Example:</strong> <code>[[1,2,3],[4,5,6],[7,8,9]]</code> → <code>[[7,4,1],[8,5,2],[9,6,3]]</code></li>
+</ul>
+<pre><code class="language-python">def rotate_matrix(m):
+    n = len(m)
+    for i in range(n):
+        for j in range(i + 1, n):
+            m[i][j], m[j][i] = m[j][i], m[i][j]
+    for row in m:
+        row.reverse()
+    return m
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Transpose, then reverse each row.</li>
+<li><strong>Follow-ups:</strong> Anti-clockwise? Non-square matrix (needs new matrix)? One-liner with <code>zip(*m[::-1])</code>?</li>
+</ul>
+<h3>Q35. Transpose a Matrix</h3>
+<p><strong>Easy · Matrix · Time O(m·n) · Space O(m·n)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Return the transpose of an m×n matrix.</li>
+<li><strong>Why asked:</strong> Basic 2D indexing test; often paired with row/column sums.</li>
+<li><strong>Example:</strong> <code>[[1,2,3],[4,5,6]]</code> → <code>[[1,4],[2,5],[3,6]]</code></li>
+</ul>
+<pre><code class="language-python">def transpose(m):
+    rows, cols = len(m), len(m[0])
+    return [[m[i][j] for i in range(rows)] for j in range(cols)]
+# Pythonic: [list(r) for r in zip(*m)]
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Element (i, j) moves to (j, i).</li>
+<li><strong>Follow-ups:</strong> Row-wise / column-wise sums? Diagonal sum? Search in a sorted matrix?</li>
+</ul>
+<h3>Q36. Maximum Sum of Subarray of Size K</h3>
+<p><strong>Easy · Sliding Window · Time O(n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Find the maximum sum of any contiguous subarray of length k.</li>
+<li><strong>Why asked:</strong> The introductory fixed-window problem.</li>
+<li><strong>Example:</strong> <code>[2,1,5,1,3,2], k=3</code> → <code>9</code></li>
+</ul>
+<pre><code class="language-python">def max_sum_k(nums, k):
+    if k &gt; len(nums):
+        return None
+    window = sum(nums[:k])
+    best = window
+    for i in range(k, len(nums)):
+        window += nums[i] - nums[i - k]
+        best = max(best, window)
+    return best
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Slide the window by adding the new element and removing the oldest.</li>
+<li><strong>Follow-ups:</strong> Smallest subarray with sum ≥ S (variable window)? Averages of all subarrays of size k?</li>
+</ul>
+<h3>Q37. Product of Array Except Self</h3>
+<p><strong>Medium · Arrays · Time O(n) · Space O(1) extra</strong></p>
+<ul>
+<li><strong>Problem:</strong> For each index, return the product of all other elements, without division.</li>
+<li><strong>Why asked:</strong> Tests prefix/suffix thinking.</li>
+<li><strong>Example:</strong> <code>[1,2,3,4]</code> → <code>[24,12,8,6]</code></li>
+</ul>
+<pre><code class="language-python">def product_except_self(nums):
+    n = len(nums)
+    res = [1] * n
+    left = 1
+    for i in range(n):
+        res[i] = left
+        left *= nums[i]
+    right = 1
+    for i in range(n - 1, -1, -1):
+        res[i] *= right
+        right *= nums[i]
+    return res
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Result[i] = (product of everything left of i) × (product of everything right of i).</li>
+<li><strong>Follow-ups:</strong> How do you handle zeros if division is allowed? Prefix sum arrays in general?</li>
+</ul>
+<h3>Q38. Longest Common Prefix</h3>
+<p><strong>Easy · Strings · Time O(S) (total characters) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Find the longest common prefix among a list of strings.</li>
+<li><strong>Why asked:</strong> Common string-handling question.</li>
+<li><strong>Example:</strong> <code>[&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]</code> → <code>&quot;fl&quot;</code></li>
+</ul>
+<pre><code class="language-python">def longest_common_prefix(strs):
+    if not strs:
+        return &#34;&#34;
+    prefix = strs[0]
+    for s in strs[1:]:
+        while not s.startswith(prefix):
+            prefix = prefix[:-1]
+            if not prefix:
+                return &#34;&#34;
+    return prefix
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Shrink the prefix until every string starts with it.</li>
+<li><strong>Follow-ups:</strong> Vertical scanning approach? Sort and compare only first and last strings? Empty list edge case?</li>
+</ul>
+<hr>
+<h1>TIER 3: EXTRA PRACTICE (Q39–Q52)</h1>
+<h3>Q39. FizzBuzz</h3>
+<p><strong>Easy · Math · Time O(n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> For 1..n, print &quot;Fizz&quot; for multiples of 3, &quot;Buzz&quot; for 5, &quot;FizzBuzz&quot; for both, else the number.</li>
+<li><strong>Why asked:</strong> A basic screening question to confirm you can code at all.</li>
+<li><strong>Example:</strong> <code>n=5</code> → <code>1, 2, Fizz, 4, Buzz</code></li>
+</ul>
+<pre><code class="language-python">def fizz_buzz(n):
+    res = []
+    for i in range(1, n + 1):
+        if i % 15 == 0:
+            res.append(&#34;FizzBuzz&#34;)
+        elif i % 3 == 0:
+            res.append(&#34;Fizz&#34;)
+        elif i % 5 == 0:
+            res.append(&#34;Buzz&#34;)
+        else:
+            res.append(str(i))
+    return res
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Check the combined condition (15) first.</li>
+<li><strong>Follow-ups:</strong> Extend to more rules without an if-chain (dict of divisors)?</li>
+</ul>
+<h3>Q40. Sum of Digits (Recursion)</h3>
+<p><strong>Easy · Recursion · Time O(d) · Space O(d)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Compute the sum of digits of a number using recursion.</li>
+<li><strong>Why asked:</strong> Simple recursion base-case practice; often followed by &quot;reverse a number&quot;.</li>
+<li><strong>Example:</strong> <code>1234</code> → <code>10</code></li>
+</ul>
+<pre><code class="language-python">def sum_digits(n):
+    n = abs(n)
+    if n &lt; 10:
+        return n
+    return n % 10 + sum_digits(n // 10)
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Last digit plus the digit-sum of the rest.</li>
+<li><strong>Follow-ups:</strong> Reverse a number? Power(x, n) with fast exponentiation? Convert to iteration to save stack space?</li>
+</ul>
+<h3>Q41. Longest Palindromic Substring</h3>
+<p><strong>Medium · Strings · Time O(n²) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Find the longest palindromic substring.</li>
+<li><strong>Why asked:</strong> Tests expand-around-center thinking.</li>
+<li><strong>Example:</strong> <code>&quot;babad&quot;</code> → <code>&quot;bab&quot;</code> (or <code>&quot;aba&quot;</code>)</li>
+</ul>
+<pre><code class="language-python">def longest_palindrome(s):
+    if not s:
+        return &#34;&#34;
+    best = (0, 0)
+
+    def expand(l, r):
+        while l &gt;= 0 and r &lt; len(s) and s[l] == s[r]:
+            l -= 1
+            r += 1
+        return l + 1, r - 1
+
+    for i in range(len(s)):
+        for l, r in (expand(i, i), expand(i, i + 1)):
+            if r - l &gt; best[1] - best[0]:
+                best = (l, r)
+    return s[best[0]:best[1] + 1]
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Every palindrome has a center (a character or a gap); expand outward from each.</li>
+<li><strong>Follow-ups:</strong> Count all palindromic substrings? Manacher's algorithm (just know it exists)?</li>
+</ul>
+<h3>Q42. Container With Most Water</h3>
+<p><strong>Medium · Two Pointers · Time O(n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Given line heights, find two lines that hold the most water.</li>
+<li><strong>Why asked:</strong> Tests the &quot;move the shorter pointer&quot; reasoning.</li>
+<li><strong>Example:</strong> <code>[1,8,6,2,5,4,8,3,7]</code> → <code>49</code></li>
+</ul>
+<pre><code class="language-python">def max_area(h):
+    l, r = 0, len(h) - 1
+    best = 0
+    while l &lt; r:
+        best = max(best, min(h[l], h[r]) * (r - l))
+        if h[l] &lt; h[r]:
+            l += 1
+        else:
+            r -= 1
+    return best
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> The shorter line limits the area; moving it is the only move that can help.</li>
+<li><strong>Follow-ups:</strong> Prove why the greedy move is safe? Brute-force complexity?</li>
+</ul>
+<h3>Q43. 3Sum</h3>
+<p><strong>Medium · Two Pointers · Time O(n²) · Space O(1) extra</strong></p>
+<ul>
+<li><strong>Problem:</strong> Find all unique triplets that sum to zero.</li>
+<li><strong>Why asked:</strong> Extends Two Sum; shows sorting plus two pointers.</li>
+<li><strong>Example:</strong> <code>[-1,0,1,2,-1,-4]</code> → <code>[[-1,-1,2],[-1,0,1]]</code></li>
+</ul>
+<pre><code class="language-python">def three_sum(nums):
+    nums.sort()
+    res = []
+    for i in range(len(nums) - 2):
+        if i &gt; 0 and nums[i] == nums[i - 1]:
+            continue
+        l, r = i + 1, len(nums) - 1
+        while l &lt; r:
+            s = nums[i] + nums[l] + nums[r]
+            if s &lt; 0:
+                l += 1
+            elif s &gt; 0:
+                r -= 1
+            else:
+                res.append([nums[i], nums[l], nums[r]])
+                l += 1
+                r -= 1
+                while l &lt; r and nums[l] == nums[l - 1]:
+                    l += 1
+                while l &lt; r and nums[r] == nums[r + 1]:
+                    r -= 1
+    return res
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Fix one number, then run two pointers on the rest; skip duplicates to keep triplets unique.</li>
+<li><strong>Follow-ups:</strong> 3Sum closest? 4Sum? Why sort first?</li>
+</ul>
+<h3>Q44. Subarray Sum Equals K</h3>
+<p><strong>Medium · Hashing · Time O(n) · Space O(n)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Count contiguous subarrays whose sum equals k.</li>
+<li><strong>Why asked:</strong> Prefix sum plus hashmap; a step above Two Sum.</li>
+<li><strong>Example:</strong> <code>[1,1,1], k=2</code> → <code>2</code></li>
+</ul>
+<pre><code class="language-python">def subarray_sum(nums, k):
+    count = prefix = 0
+    seen = {0: 1}                  # prefix sum -&gt; occurrences
+    for x in nums:
+        prefix += x
+        count += seen.get(prefix - k, 0)
+        seen[prefix] = seen.get(prefix, 0) + 1
+    return count
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> A subarray ending here sums to k if some earlier prefix equals <code>prefix - k</code>.</li>
+<li><strong>Follow-ups:</strong> Why doesn't sliding window work when negatives exist? Longest subarray with sum k?</li>
+</ul>
+<h3>Q45. Search in Rotated Sorted Array</h3>
+<p><strong>Medium · Searching · Time O(log n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Search for a target in a sorted array that has been rotated.</li>
+<li><strong>Why asked:</strong> A common twist on binary search.</li>
+<li><strong>Example:</strong> <code>[4,5,6,7,0,1,2], target=0</code> → <code>4</code></li>
+</ul>
+<pre><code class="language-python">def search(nums, target):
+    l, r = 0, len(nums) - 1
+    while l &lt;= r:
+        m = (l + r) // 2
+        if nums[m] == target:
+            return m
+        if nums[l] &lt;= nums[m]:              # left half sorted
+            if nums[l] &lt;= target &lt; nums[m]:
+                r = m - 1
+            else:
+                l = m + 1
+        else:                                # right half sorted
+            if nums[m] &lt; target &lt;= nums[r]:
+                l = m + 1
+            else:
+                r = m - 1
+    return -1
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> One half is always sorted; check if the target lies in it, otherwise go to the other half.</li>
+<li><strong>Follow-ups:</strong> Find the minimum in a rotated array? Duplicates present?</li>
+</ul>
+<h3>Q46. Next Greater Element</h3>
+<p><strong>Medium · Stack · Time O(n) · Space O(n)</strong></p>
+<ul>
+<li><strong>Problem:</strong> For each element, find the next larger element to its right, or -1.</li>
+<li><strong>Why asked:</strong> The standard monotonic stack pattern.</li>
+<li><strong>Example:</strong> <code>[4,5,2,25]</code> → <code>[5,25,25,-1]</code></li>
+</ul>
+<pre><code class="language-python">def next_greater(nums):
+    res = [-1] * len(nums)
+    stack = []                               # indices with unresolved answers
+    for i, x in enumerate(nums):
+        while stack and nums[stack[-1]] &lt; x:
+            res[stack.pop()] = x
+        stack.append(i)
+    return res
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> The stack holds elements still waiting for a greater one; a bigger arrival resolves them.</li>
+<li><strong>Follow-ups:</strong> Circular array? Daily temperatures? Next smaller element?</li>
+</ul>
+<h3>Q47. Reverse Words in a String</h3>
+<p><strong>Easy · Strings · Time O(n) · Space O(n)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Reverse the order of words, trimming extra spaces.</li>
+<li><strong>Why asked:</strong> Frequent string-manipulation warm-up.</li>
+<li><strong>Example:</strong> <code>&quot;  the sky  is blue &quot;</code> → <code>&quot;blue is sky the&quot;</code></li>
+</ul>
+<pre><code class="language-python">def reverse_words(s):
+    return &#34; &#34;.join(reversed(s.split()))
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> <code>split()</code> with no argument handles extra whitespace; reverse and rejoin.</li>
+<li><strong>Follow-ups:</strong> Reverse each word in place but keep word order? Do it without <code>split</code>?</li>
+</ul>
+<h3>Q48. Remove Nth Node From End of List</h3>
+<p><strong>Medium · Linked List · Time O(n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Remove the nth node from the end in a single pass.</li>
+<li><strong>Why asked:</strong> Tests the two-pointer gap technique.</li>
+<li><strong>Example:</strong> <code>1→2→3→4→5, n=2</code> → <code>1→2→3→5</code></li>
+</ul>
+<pre><code class="language-python">def remove_nth_from_end(head, n):
+    dummy = ListNode(0, head)
+    fast = slow = dummy
+    for _ in range(n):
+        fast = fast.next
+    while fast.next:
+        fast = fast.next
+        slow = slow.next
+    slow.next = slow.next.next
+    return dummy.next
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Keep the pointers n nodes apart; when fast hits the end, slow sits just before the target.</li>
+<li><strong>Follow-ups:</strong> Why use a dummy node? Delete a node given only that node?</li>
+</ul>
+<h3>Q49. Spiral Matrix</h3>
+<p><strong>Medium · Matrix · Time O(m·n) · Space O(1) extra</strong></p>
+<ul>
+<li><strong>Problem:</strong> Return all elements of a matrix in spiral order.</li>
+<li><strong>Why asked:</strong> Boundary-tracking practice; appears in many OAs.</li>
+<li><strong>Example:</strong> <code>[[1,2,3],[4,5,6],[7,8,9]]</code> → <code>[1,2,3,6,9,8,7,4,5]</code></li>
+</ul>
+<pre><code class="language-python">def spiral_order(m):
+    res = []
+    if not m:
+        return res
+    top, bottom, left, right = 0, len(m) - 1, 0, len(m[0]) - 1
+    while top &lt;= bottom and left &lt;= right:
+        for j in range(left, right + 1):
+            res.append(m[top][j])
+        top += 1
+        for i in range(top, bottom + 1):
+            res.append(m[i][right])
+        right -= 1
+        if top &lt;= bottom:
+            for j in range(right, left - 1, -1):
+                res.append(m[bottom][j])
+            bottom -= 1
+        if left &lt;= right:
+            for i in range(bottom, top - 1, -1):
+                res.append(m[i][left])
+            left += 1
+    return res
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Walk the four edges and shrink the boundaries after each.</li>
+<li><strong>Follow-ups:</strong> Generate an n×n spiral matrix? Diagonal traversal?</li>
+</ul>
+<h3>Q50. Set Matrix Zeroes</h3>
+<p><strong>Medium · Matrix · Time O(m·n) · Space O(m+n)</strong></p>
+<ul>
+<li><strong>Problem:</strong> If a cell is 0, set its entire row and column to 0.</li>
+<li><strong>Why asked:</strong> Tests careful two-pass 2D logic.</li>
+<li><strong>Example:</strong> <code>[[1,1,1],[1,0,1],[1,1,1]]</code> → <code>[[1,0,1],[0,0,0],[1,0,1]]</code></li>
+</ul>
+<pre><code class="language-python">def set_zeroes(m):
+    rows, cols = set(), set()
+    for i in range(len(m)):
+        for j in range(len(m[0])):
+            if m[i][j] == 0:
+                rows.add(i)
+                cols.add(j)
+    for i in range(len(m)):
+        for j in range(len(m[0])):
+            if i in rows or j in cols:
+                m[i][j] = 0
+    return m
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Record zero rows/columns first, then zero them, so new zeros don't cascade.</li>
+<li><strong>Follow-ups:</strong> O(1) space using the first row and column as markers? Why can't you zero on the fly?</li>
+</ul>
+<h3>Q51. Jump Game</h3>
+<p><strong>Medium · Greedy · Time O(n) · Space O(1)</strong></p>
+<ul>
+<li><strong>Problem:</strong> Each value is your max jump length; can you reach the last index?</li>
+<li><strong>Why asked:</strong> A beginner-friendly greedy question.</li>
+<li><strong>Example:</strong> <code>[2,3,1,1,4]</code> → <code>True</code>, <code>[3,2,1,0,4]</code> → <code>False</code></li>
+</ul>
+<pre><code class="language-python">def can_jump(nums):
+    farthest = 0
+    for i, x in enumerate(nums):
+        if i &gt; farthest:
+            return False
+        farthest = max(farthest, i + x)
+    return True
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> Track the farthest reachable index; if you land beyond it, you're stuck.</li>
+<li><strong>Follow-ups:</strong> Minimum number of jumps? Why does greedy work here?</li>
+</ul>
+<h3>Q52. Generate All Subsets</h3>
+<p><strong>Medium · Recursion · Time O(n·2ⁿ) · Space O(n) recursion depth</strong></p>
+<ul>
+<li><strong>Problem:</strong> Return all subsets of a list of distinct integers.</li>
+<li><strong>Why asked:</strong> Entry point to backtracking.</li>
+<li><strong>Example:</strong> <code>[1,2,3]</code> → all 8 subsets (order may vary)</li>
+</ul>
+<pre><code class="language-python">def subsets(nums):
+    res = []
+
+    def backtrack(i, path):
+        if i == len(nums):
+            res.append(path[:])
+            return
+        backtrack(i + 1, path)             # exclude nums[i]
+        path.append(nums[i])
+        backtrack(i + 1, path)             # include nums[i]
+        path.pop()
+
+    backtrack(0, [])
+    return res
+</code></pre>
+<ul>
+<li><strong>Explanation:</strong> For each element, choose to exclude or include it.</li>
+<li><strong>Follow-ups:</strong> Permutations? Subsets with duplicates? Iterative approach with bitmasks?</li>
+</ul>
+<hr>
+<h1>7-DAY PREPARATION PLAN (2–3 hours/day)</h1>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Focus</th>
+<th>Questions</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td>Arrays and Strings basics</td>
+<td>Q1, Q2, Q4, Q5, Q6, Q20, Q38</td>
+<td>Warm up; write each on paper first, then in code</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Hashing</td>
+<td>Q3, Q7, Q8, Q21, Q23, Q24, Q22</td>
+<td>Learn <code>Counter</code> and <code>defaultdict</code> properly</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Two Pointers, Sliding Window, Searching</td>
+<td>Q15, Q11, Q16, Q17, Q18, Q36</td>
+<td>Draw pointer movements for each</td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td>Sorting, Math, Recursion</td>
+<td>Q19, Q26, Q25, Q10, Q32, Q33, Q9, Q40, Q39</td>
+<td>Solve the number problems using both string and <code>%</code>/<code>//</code> methods</td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td>Stack, Queue, Linked List</td>
+<td>Q12, Q27, Q28, Q13, Q29, Q30, Q31</td>
+<td>Dry-run pointer changes step by step</td>
+</tr>
+<tr>
+<td><strong>6</strong></td>
+<td>Matrix, Greedy, Tier 2 mediums</td>
+<td>Q34, Q35, Q37, Q51, Q44, Q42</td>
+<td>Practise writing complexity aloud</td>
+</tr>
+<tr>
+<td><strong>7</strong></td>
+<td>Mock test and revision</td>
+<td>Timed set below</td>
+<td>Simulate a real OA</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Day 7 mock:</strong> 90 minutes, no notes. Solve one Easy from Tier 1 (15 min), two Mediums from Tier 1/2 (30 min each), then spend the remaining time explaining time/space complexity and edge cases aloud for each. Redo anything you got wrong or needed a hint for.</p>
+<p><strong>Daily routine (each day):</strong></p>
+<ol>
+<li>15 min: revise yesterday's questions from memory.</li>
+<li>90–120 min: new questions (attempt 20 min before peeking at a solution).</li>
+<li>20 min: note the pattern and edge cases in a notebook.</li>
+</ol>
+<p><strong>Tips for the real OA / interview:</strong></p>
+<ul>
+<li>Start with brute force, state its complexity, then optimise.</li>
+<li>Always mention edge cases: empty input, single element, duplicates, negatives.</li>
+<li>Say your time and space complexity unprompted.</li>
+<li>Dry-run your code on the given example before submitting.</li>
+<li>Many service-company OAs use stdin/stdout, so practise reading input with <code>input().split()</code> and <code>map(int, ...)</code>.</li>
+</ul>
+<hr>
+<h1>TOP 20: SOLVE WITHOUT LOOKING AT THE SOLUTION</h1>
+<p>Aim to write each of these correctly, with complexity and edge cases, in under 15 minutes.</p>
+<ol>
+<li><strong>Q2</strong>: Palindrome check (two pointers)</li>
+<li><strong>Q3</strong>: Two Sum (hash map)</li>
+<li><strong>Q5</strong>: Move Zeroes</li>
+<li><strong>Q6</strong>: Remove Duplicates from Sorted Array</li>
+<li><strong>Q7</strong>: Valid Anagram</li>
+<li><strong>Q8</strong>: First Non-Repeating Character</li>
+<li><strong>Q9</strong>: Nth Fibonacci (recursive plus memoised plus iterative)</li>
+<li><strong>Q10</strong>: Prime Number Check</li>
+<li><strong>Q11</strong>: Binary Search</li>
+<li><strong>Q12</strong>: Valid Parentheses</li>
+<li><strong>Q13</strong>: Reverse a Linked List</li>
+<li><strong>Q14</strong>: Missing Number</li>
+<li><strong>Q15</strong>: Merge Two Sorted Arrays</li>
+<li><strong>Q16</strong>: Maximum Subarray (Kadane's)</li>
+<li><strong>Q17</strong>: Rotate Array by K</li>
+<li><strong>Q18</strong>: Longest Substring Without Repeating Characters</li>
+<li><strong>Q19</strong>: Sort 0s, 1s and 2s</li>
+<li><strong>Q21</strong>: Group Anagrams</li>
+<li><strong>Q22</strong>: Best Time to Buy and Sell Stock</li>
+<li><strong>Q30</strong>: Detect Cycle in a Linked List</li>
+</ol>
+<p><strong>After these:</strong> Q25 (Merge Intervals), Q27 (Min Stack), Q34 (Rotate Matrix) and Q44 (Subarray Sum = K) are the next best returns on your time.</p>
+
+</body></html>
